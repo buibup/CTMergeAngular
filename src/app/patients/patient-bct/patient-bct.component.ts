@@ -1,4 +1,9 @@
+
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
+import { PatientService } from '../shared/patient.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-patient-bct',
@@ -7,9 +12,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PatientBctComponent implements OnInit {
 
-  constructor() { }
+  constructor(private patientService: PatientService, private toastr: ToastrService) { }
 
   ngOnInit() {
   }
 
+  onGetPatient(search: string) {
+    this.patientService.getPatientBCT(search);
+  }
 }

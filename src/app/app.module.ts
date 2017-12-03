@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { PatientsComponent } from './patients/patients.component';
 import { PatientBctComponent } from './patients/patient-bct/patient-bct.component';
 import { PatientSctComponent } from './patients/patient-sct/patient-sct.component';
-
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,10 @@ import { PatientSctComponent } from './patients/patient-sct/patient-sct.componen
     PatientSctComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
