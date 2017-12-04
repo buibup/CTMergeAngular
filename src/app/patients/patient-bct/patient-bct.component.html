@@ -24,7 +24,7 @@
   </div>
   <div class="form-row">
     <div class="form-group col-md-8">
-      <button type="submit" (click)="onGetPatient(searchTerm)" class="btn btn-lg btn-block btn-info">
+      <button type="submit" (click)="onGetPatient(searchTerm.value)" class="btn btn-lg btn-block btn-info">
         <i class="fa fa-search"> Search </i>
       </button>
     </div>
@@ -36,11 +36,16 @@
   </div>
 </form>
 
-<div class="form-row">
+<div class="form-row" *ngIf="patientVMList">
   <table class="table table-sm table-hover">
-    <tr *ngFor="let patientVM of patientService.selectedPatientVM">
-      <td>{{patientVM.Patient.HN}}</td>
-      <td>{{patientVM.Patient.FirstName}} - {{patientVM.Patient.LastName}}</td>
+    <!--<li *ngFor="let patientVM of patientVMList">
+      <span>{{patientVM.Patient.HN}}</span>
+    </li>-->
+    <tr *ngFor="let patientVM of patientVMList">
+      <td>BCT HN : {{patientVM.Patient.HN}}</td>
+      <td>SCT HN : {{patientVM.SCT_HN}}</td>
+      <td>{{patientVM.Patient.Name}}</td>
+      <td></td>
     </tr>
   </table>
 </div>

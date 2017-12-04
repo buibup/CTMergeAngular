@@ -1,9 +1,11 @@
 
 import { Component, OnInit } from '@angular/core';
+import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
 import { NgForm } from '@angular/forms';
 
 import { PatientService } from '../shared/patient.service';
 import { ToastrService } from 'ngx-toastr';
+import { PatientVM } from '../shared/patientVM.model';
 
 @Component({
   selector: 'app-patient-bct',
@@ -12,12 +14,13 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class PatientBctComponent implements OnInit {
 
-  constructor(private patientService: PatientService, private toastr: ToastrService) { }
+  patientVMList: PatientVM[];
+  constructor(private patientService: PatientService, private toastr: ToastrService, private http: Http) { }
 
   ngOnInit() {
   }
 
   onGetPatient(search: string) {
-    this.patientService.getPatientBCT(search);
+    this.patientService.getPatientBCT(search).subscribe(x => this.patientVMList = x);
   }
 }
