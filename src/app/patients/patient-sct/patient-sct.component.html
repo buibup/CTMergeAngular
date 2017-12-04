@@ -1,30 +1,41 @@
 <form action="" class="pt-form">
-    <div class="formg-group col-md-12 label">
-        <label>Patient Serach SCT</label>
+  <div class="formg-group col-md-12 label">
+    <label>Patient Serach SCT</label>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <input class="form-control" name="HN" #HN placeholder="Search HN">
     </div>
-    <div class="form-row">
-      <div class="form-group col-md-12">
-        <input  class="form-control" name="HN" placeholder="Search HN">
-      </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <input class="form-control" name="FirstName" #FirstName placeholder="Search FirstName">
     </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-          <input  class="form-control" name="FirstName" placeholder="Search FirstName">
-        </div>
-        <div class="form-group col-md-6">
-          <input class="form-control" name="LastName" placeholder="Search LastName">
-        </div>
-      </div>
-    <div class="form-row">
-      <div class="form-group col-md-8">
-          <button class="btn btn-lg btn-block btn-info">
-              <i class="fa fa-search"> Search </i>
-            </button>
-      </div>
-      <div class="form-group col-md-4">
-          <button class="btn btn-lg btn-block btn-secondary">
-            <i class="fa fa-repeat"> Reset </i>
-          </button>
-      </div>
+    <div class="form-group col-md-6">
+      <input class="form-control" name="LastName" #LastName placeholder="Search LastName">
     </div>
-  </form>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-8">
+      <button class="btn btn-lg btn-block btn-info" (click)="onGetPatient(HN.value,FirstName.value,LastName.value)">
+        <i class="fa fa-search"> Search </i>
+      </button>
+    </div>
+    <div class="form-group col-md-4">
+      <button class="btn btn-lg btn-block btn-secondary">
+        <i class="fa fa-repeat"> Reset </i>
+      </button>
+    </div>
+  </div>
+</form>
+
+<div class="form-row" *ngIf="patientList">
+  <table class="table table-sm table-hover">
+    <tr *ngFor="let patient of patientList" (click)="onGetPatientBCT(patient.FirstName + patient.LastName)">
+      <td>HN : {{patient.HN}}</td>
+      <td>Name : {{patient.Name}}</td>
+      <td>DOB : {{patient.DOB}}</td>
+      <td></td>
+    </tr>
+  </table>
+</div>

@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { PatientService } from '../shared/patient.service';
 import { ToastrService } from 'ngx-toastr';
 import { PatientVM } from '../shared/patientVM.model';
+import { Input } from '@angular/core/src/metadata/directives';
 
 @Component({
   selector: 'app-patient-bct',
