@@ -4,6 +4,7 @@ import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+import { Subject } from 'rxjs/Subject';
 
 import { Patient } from './patient.model';
 import { PatientVM } from './patientVM.model';
@@ -13,22 +14,27 @@ export class PatientService {
     selectedPatientVM: PatientVM;
     patientVMList: PatientVM[];
     patientList: Patient[];
+
+    componentPatientBCT: Function;
+
     constructor(private http: Http) { }
 
     getPatientBCT(search: string): Observable<PatientVM[]> {
         return this.http.get('http://10.104.10.45/CTMergeAPI/api/v1/GetPatientBCT?search=' + search)
-        .map((result: Response) => result.json() as PatientVM[]);
+            .map((result: Response) => result.json() as PatientVM[]);
     }
 
     getPatientSCTByHN(hn: string): Observable<Patient[]> {
-        console.log('getPatientSCTByHN');
         return this.http.get('http://10.104.10.45/CTMergeAPI/api/v1/GetPatientSCTByHN?hn=' + hn)
-        .map((result: Response) => result.json() as Patient[]);
+            .map((result: Response) => result.json() as Patient[]);
     }
 
     getPatientSCTByName(firstName: string, lastName: string): Observable<Patient[]> {
-        console.log('getPatientSCTByName');
         return this.http.get('http://10.104.10.45/CTMergeAPI/api/v1/GetPatientSCTByName?firstName=' + firstName + '&lastName=' + lastName)
-        .map((result: Response) => result.json() as Patient[]);
+            .map((result: Response) => result.json() as Patient[]);
+    }
+
+    getPatientVMList(): PatientVM[] {
+        return this.patientVMList;
     }
 }

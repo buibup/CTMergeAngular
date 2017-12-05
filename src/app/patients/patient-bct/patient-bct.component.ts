@@ -16,12 +16,20 @@ import { Input } from '@angular/core/src/metadata/directives';
 export class PatientBctComponent implements OnInit {
 
   patientVMList: PatientVM[];
-  constructor(private patientService: PatientService, private toastr: ToastrService, private http: Http) { }
+
+  constructor(private patientService: PatientService, private toastr: ToastrService, private http: Http) {
+    this.patientService.componentPatientBCT = this.onSetPatientVMList;
+  }
 
   ngOnInit() {
   }
 
   onGetPatient(search: string) {
     this.patientService.getPatientBCT(search).subscribe(x => this.patientVMList = x);
+  }
+
+  onSetPatientVMList(data: PatientVM[]) {
+    console.log(data);
+    this.patientVMList = data;
   }
 }
