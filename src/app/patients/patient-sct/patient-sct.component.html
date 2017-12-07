@@ -28,14 +28,4 @@
     </div>
   </div>
 </form>
-
-<div class="form-row" *ngIf="patientList">
-  <table class="table table-sm table-hover">
-    <tr *ngFor="let patient of patientList" (click)="onGetPatientBCT(patient.FirstName + patient.LastName)">
-      <td>HN : {{patient.HN}}</td>
-      <td>Name : {{patient.Name}}</td>
-      <td>DOB : {{patient.DOB}}</td>
-      <td></td>
-    </tr>
-  </table>
-</div>
+<app-patient-sct-list></app-patient-sct-list>

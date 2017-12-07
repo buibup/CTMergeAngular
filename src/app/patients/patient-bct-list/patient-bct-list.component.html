@@ -1,0 +1,15 @@
+<div class="form-row" *ngIf="patientBctListService.patientList">
+  <table class="table table-sm table-hover">
+    <tr>
+      <th>HN</th>
+      <th>Name</th>
+      <th>DOB</th>
+    </tr>
+    <tr *ngFor="let patient of patientBctListService.patientList">
+      <td>{{patient.Patient.HN}}</td>
+      <!-- <td>{{patientVM.SCT_HN}}</td> -->
+      <td>{{patient.Patient.Name}}</td>
+      <td>{{patient.Patient.DOB | date :  "dd/MM/yyyy"}}</td>
+    </tr>
+  </table>
+</div>

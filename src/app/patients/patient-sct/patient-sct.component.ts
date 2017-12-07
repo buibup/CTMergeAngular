@@ -1,8 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { PatientService } from '../shared/patient.service';
-import { PatientVM } from '../shared/patientVM.model';
-import { Patient } from '../shared/patient.model';
+import { PatientSctListService } from '../shared/patient-sct-list.service';
 
 @Component({
   selector: 'app-patient-sct',
@@ -11,28 +10,18 @@ import { Patient } from '../shared/patient.model';
 })
 export class PatientSctComponent implements OnInit {
 
-  patientVMList: PatientVM[];
-  patientList: Patient[];
-  name: string;
-
-  constructor(private patientService: PatientService) {
-  }
+  constructor(private patientService: PatientService, public patientSctListService: PatientSctListService) { }
 
   ngOnInit() {
   }
 
   onGetPatient(hn: string, firstName: string, lastName: string) {
     if (typeof hn !== 'undefined' && hn) {
-      this.patientService.getPatientSCTByHN(hn).subscribe(x => this.patientList = x);
+      this.patientService.getPatientSCTByHN(hn).subscribe(x => this.patientSctListService.set(x));
     } else {
-      this.patientService.getPatientSCTByName(firstName, lastName).subscribe(x => this.patientList = x);
+      this.patientService.getPatientSCTByName(firstName, lastName).subscribe(x => this.patientSctListService.set(x));
     }
+
   }
 
-  onGetPatientBCT(search: string) {
-    this.patientService.getPatientBCT(search).subscribe(x => this.patientService.patientVMList = x);
-    if (this.patientService.componentPatientBCT) {
-      this.patientService.componentPatientBCT(this.patientService.patientVMList);
-    }
-  }
 }

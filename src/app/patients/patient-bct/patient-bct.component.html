@@ -35,17 +35,4 @@
     </div>
   </div>
 </form>
-
-<div class="form-row" *ngIf="patientVMList">
-  <table class="table table-sm table-hover">
-    <!--<li *ngFor="let patientVM of patientVMList">
-      <span>{{patientVM.Patient.HN}}</span>
-    </li>-->
-    <tr *ngFor="let patientVM of patientVMList">
-      <td>BCT HN : {{patientVM.Patient.HN}}</td>
-      <td>SCT HN : {{patientVM.SCT_HN}}</td>
-      <td>Name : {{patientVM.Patient.Name}}</td>
-      <td>DOB : {{patientVM.Patient.DOB}}</td>
-    </tr>
-  </table>
-</div>
+<app-patient-bct-list></app-patient-bct-list>

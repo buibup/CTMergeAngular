@@ -1,12 +1,13 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
 import { NgForm } from '@angular/forms';
 
 import { PatientService } from '../shared/patient.service';
 import { ToastrService } from 'ngx-toastr';
 import { PatientVM } from '../shared/patientVM.model';
-import { Input } from '@angular/core/src/metadata/directives';
+// import { Input } from '@angular/core/src/metadata/directives';
+import { PatientBctListService } from '../shared/patient-bct-list.service';
 
 @Component({
   selector: 'app-patient-bct',
@@ -15,21 +16,13 @@ import { Input } from '@angular/core/src/metadata/directives';
 })
 export class PatientBctComponent implements OnInit {
 
-  patientVMList: PatientVM[];
-
-  constructor(private patientService: PatientService, private toastr: ToastrService, private http: Http) {
-    this.patientService.componentPatientBCT = this.onSetPatientVMList;
-  }
+  // tslint:disable-next-line:max-line-length
+  constructor(private patientService: PatientService,  public patientBctListService: PatientBctListService, private toastr: ToastrService, private http: Http) { }
 
   ngOnInit() {
   }
 
   onGetPatient(search: string) {
-    this.patientService.getPatientBCT(search).subscribe(x => this.patientVMList = x);
-  }
-
-  onSetPatientVMList(data: PatientVM[]) {
-    console.log(data);
-    this.patientVMList = data;
+    this.patientService.getPatientBCT(search).subscribe(x => this.patientBctListService.set(x));
   }
 }
