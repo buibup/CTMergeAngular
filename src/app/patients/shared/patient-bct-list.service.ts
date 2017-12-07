@@ -5,9 +5,14 @@ import { PatientVM } from './patientVM.model';
 export class PatientBctListService {
 
   patientList: PatientVM[];
+  isMerge: boolean;
 
    set(patients: PatientVM[]) {
      this.patientList = patients;
+   }
+
+   hasMerge(merge: boolean) {
+    this.isMerge = merge;
    }
 
    clear() {

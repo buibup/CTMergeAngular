@@ -21,7 +21,5 @@ export class PatientSctComponent implements OnInit {
     } else {
       this.patientService.getPatientSCTByName(firstName, lastName).subscribe(x => this.patientSctListService.set(x));
     }
-
   }
-
 }
