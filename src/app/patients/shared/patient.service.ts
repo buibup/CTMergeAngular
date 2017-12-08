@@ -7,7 +7,6 @@ import 'rxjs/add/operator/toPromise';
 
 import { Patient } from './patient.model';
 import { PatientVM } from './patientVM.model';
-import { request } from 'http';
 
 @Injectable()
 export class PatientService {
