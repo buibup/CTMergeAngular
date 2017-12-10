@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { PatientService } from '../shared/patient.service';
 import { ToastrService } from 'ngx-toastr';
 import { PatientVM } from '../shared/patientVM.model';
+import { Patient } from '../shared/patient.model';
 // import { Input } from '@angular/core/src/metadata/directives';
 import { PatientBctListService } from '../shared/patient-bct-list.service';
 
@@ -17,12 +18,14 @@ import { PatientBctListService } from '../shared/patient-bct-list.service';
 export class PatientBctComponent implements OnInit {
 
   // tslint:disable-next-line:max-line-length
-  constructor(private patientService: PatientService,  public patientBctListService: PatientBctListService, private toastr: ToastrService, private http: Http) { }
+  constructor(private patientService: PatientService,
+    public patientBctListService: PatientBctListService,
+    private toastr: ToastrService, private http: Http) { }
 
   ngOnInit() {
   }
 
   onGetPatient(search: string) {
-    this.patientService.getPatientBCT(search).subscribe(x => this.patientBctListService.set(x));
+    this.patientService.getPatientBCT(search).subscribe(x => this.patientBctListService.set(x, new Patient()));
   }
 }

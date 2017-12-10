@@ -1,8 +1,8 @@
 <div class="form-row" *ngIf="patientBctListService.patientList">
   <table class="table table-sm table-hover">
     <tr>
-      <th>HN SCT</th>
       <th>HN BCT</th>
+      <th>HN SCT</th>
       <th>Name</th>
       <th>DOB</th>
       <th>Merge</th>
@@ -11,8 +11,10 @@
       <td>{{patient.Patient.HN}}</td>
       <td>{{patient.SCT_HN}}</td>
       <td>{{patient.Patient.Name}}</td>
-      <td>{{patient.Patient.DOB | date :  "dd/MM/yyyy"}}</td>
-      <td><button (click)="onMergePatient(patient.Patient.HN, patient.SCT_HN)">Merge</button></td>
+      <td>{{patient.Patient.DOB | date : "dd/MM/yyyy"}}</td>
+      <td>
+        <button (click)="onMergePatient(patient.Patient.HN, '11-17-038404')">Merge</button>
+      </td>
     </tr>
   </table>
 </div>

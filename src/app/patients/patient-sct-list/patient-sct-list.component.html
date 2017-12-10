@@ -5,7 +5,7 @@
       <th>Name</th>
       <th>DOB</th>
     </tr>
-    <tr *ngFor="let patient of patientSctListService.patientList" (click)="onGetPatientBCT(patient.FirstName + patient.LastName)">
+    <tr *ngFor="let patient of patientSctListService.patientList" (click)="onGetPatientBCT(patient.FirstName + patient.LastName, patient)">
       <td>{{patient.HN}}</td>
       <td>{{patient.Name}}</td>
       <td>{{patient.DOB | date :  "dd/MM/yyyy"}}</td>

@@ -10,7 +10,8 @@ import { PatientSctListService } from '../shared/patient-sct-list.service';
 })
 export class PatientSctComponent implements OnInit {
 
-  constructor(private patientService: PatientService, public patientSctListService: PatientSctListService) { }
+  constructor(private patientService: PatientService,
+    public patientSctListService: PatientSctListService) { }
 
   ngOnInit() {
   }

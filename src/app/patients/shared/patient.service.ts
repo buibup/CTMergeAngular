@@ -10,7 +10,7 @@ import { PatientVM } from './patientVM.model';
 
 @Injectable()
 export class PatientService {
-    selectedPatientVM: PatientVM;
+
     patientVMList: PatientVM[];
     patientList: Patient[];
 
@@ -34,17 +34,17 @@ export class PatientService {
         .map((result: Response) => result.json() as Patient[]);
     }
 
-    mergePatient(bctHN: string, sctHN: string): Observable<boolean> {
+    mergePatient(bctHN: string, sctHN: string, patient: Patient): Observable<boolean> {
         return this.http.get('http://10.104.10.45/CTMergeAPI/api/v1/PatienMerge?BCT_HN=' + bctHN + '&SCT_HN=' + sctHN)
         .map((result: Response) => result.ok as boolean);
     }
 
     setPatientSCTSelected(patient: Patient) {
-        this.patientSCTSelected = patient;
+      this.patientSCTSelected = patient;
     }
 
     setPatientBCTSelected(patient: PatientVM) {
-        this.patientBCTSelected = patient;
+      this.patientBCTSelected = patient;
     }
 
 }

@@ -15,14 +15,15 @@ export class PatientSctListComponent implements OnInit {
 
   @Input() patientList: Patient[];
 
-  // tslint:disable-next-line:max-line-length
-  constructor(private patientService: PatientService, public patientBctListService: PatientBctListService, public patientSctListService: PatientSctListService) { }
+  constructor(private patientService: PatientService,
+    public patientBctListService: PatientBctListService,
+    public patientSctListService: PatientSctListService) { }
 
   ngOnInit() {
   }
 
-  onGetPatientBCT(name: string): void {
-    this.patientService.getPatientBCT(name).subscribe(x => this.patientBctListService.set(x));
+  onGetPatientBCT(name: string, patient: Patient): void {
+    this.patientService.getPatientBCT(name).subscribe(x => this.patientBctListService.set(x, patient));
   }
 
 }

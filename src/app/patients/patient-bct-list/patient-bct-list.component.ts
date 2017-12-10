@@ -14,13 +14,15 @@ export class PatientBctListComponent implements OnInit {
   _bctHN: string;
   _sctHN: string;
 
-  constructor(public patientBctListService: PatientBctListService, private patientService: PatientService) { }
+  constructor(public patientBctListService: PatientBctListService,
+    private patientService: PatientService) { }
 
   ngOnInit() {
   }
 
   onMergePatient(bctHN: string, sctHN: string) {
-    this.patientService.mergePatient(bctHN, sctHN).subscribe(x => this.patientBctListService.hasMerge(x));
+    this.patientService.mergePatient(bctHN, sctHN, this.patientBctListService.patientSCTSelected)
+    .subscribe(x => this.patientBctListService.hasMerge(x));
   }
 
 }
