@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { PatientVM } from '../shared/patientVM.model';
 
+import { PatientVM } from '../shared/patientVM.model';
 import { PatientBctListService } from '../shared/patient-bct-list.service';
 import { PatientService } from '../shared/patient.service';
+import { Patient } from '../shared/patient.model';
 
 @Component({
   selector: 'app-patient-bct-list',
@@ -10,9 +11,6 @@ import { PatientService } from '../shared/patient.service';
   styleUrls: ['./patient-bct-list.component.css']
 })
 export class PatientBctListComponent implements OnInit {
-
-  _bctHN: string;
-  _sctHN: string;
 
   constructor(public patientBctListService: PatientBctListService,
     private patientService: PatientService) { }
@@ -23,6 +21,18 @@ export class PatientBctListComponent implements OnInit {
   onMergePatient(bctHN: string, sctHN: string) {
     this.patientService.mergePatient(bctHN, sctHN, this.patientBctListService.patientSCTSelected)
     .subscribe(x => this.patientBctListService.hasMerge(x));
+
+    if (this.patientBctListService.isMerge) {
+      this.patientService.getPatientBCT(bctHN).subscribe(x => this.patientBctListService.patientList = x);
+      this.isMerge(this.patientBctListService.patientSCTSelected, sctHN);
+    }
   }
 
+  isMerge(patientSCT: Patient, sctHN: string): boolean {
+    if (patientSCT.HN === sctHN) {
+      return true;
+    }
+
+    return false;
+  }
 }
