@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { PatientService } from '../shared/patient.service';
 import { PatientSctListService } from '../shared/patient-sct-list.service';
+import { Patient } from '../shared/patient.model';
 
 @Component({
   selector: 'app-patient-sct',
@@ -20,7 +21,7 @@ export class PatientSctComponent implements OnInit {
     if (typeof hn !== 'undefined' && hn) {
       this.patientService.getPatientSCTByHN(hn).subscribe(x => this.patientSctListService.set(x));
     } else {
-      this.patientService.getPatientSCTByName(firstName, lastName).subscribe(x => this.patientSctListService.set(x));
+      this.patientService.getPatientSCTByName(firstName, lastName).subscribe(x => this.patientSctListService.set(x, ));
     }
   }
 }

@@ -13,6 +13,7 @@ export class PatientBctListService {
 
    set(patients: PatientVM[], patient: Patient) {
      this.patientList = patients;
+     this.patientSCTSelected = patient;
    }
 
    hasMerge(merge: boolean) {
@@ -21,5 +22,6 @@ export class PatientBctListService {
 
    clear() {
      this.patientList = [];
+     this.patientSCTSelected = null;
    }
 }
