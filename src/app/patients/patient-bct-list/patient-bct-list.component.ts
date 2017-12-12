@@ -19,25 +19,25 @@ export class PatientBctListComponent implements OnInit {
   }
 
   onMergePatient(bctHN: string, sctHN: string, patientBCTSelected: PatientVM) {
-    if (this.isMerge(this.patientBctListService.patientSCTSelected, patientBCTSelected.SCT_HN)) {
+    if (this.isMerge(this.patientBctListService.patientSCTSelected, patientBCTSelected.SCT_HN, patientBCTSelected)) {
       this.patientService.mergePatient(bctHN, '')
-      .subscribe(x => this.toMerge(bctHN, '', x));
+      .subscribe(x => this.toMerge(bctHN, '', x, patientBCTSelected));
     }else {
       this.patientService.mergePatient(bctHN, sctHN)
-      .subscribe(x => this.toMerge(bctHN, sctHN, x));
+      .subscribe(x => this.toMerge(bctHN, sctHN, x, patientBCTSelected));
     }
   }
 
-  toMerge(bctHN: string, sctHN: string, isM: boolean) {
+  toMerge(bctHN: string, sctHN: string, isM: boolean, patientBCTSelected: PatientVM) {
     this.patientBctListService.hasMerge(isM);
     if (this.patientBctListService.isMerge) {
       this.patientService.getPatientBCT(bctHN).subscribe(x => this.patientBctListService.patientList = x);
-      this.isMerge(this.patientBctListService.patientSCTSelected, sctHN);
+      this.isMerge(this.patientBctListService.patientSCTSelected, sctHN, patientBCTSelected);
     }
   }
 
-  isMerge(patientSCT: Patient, sctHN: string): boolean {
-    if (patientSCT.HN === sctHN) {
+  isMerge(patientSCT: Patient, sctHN: string, patientVM: PatientVM): boolean {
+    if (patientSCT.HN === sctHN || patientVM.SCT_HN !== null) {
       return true;
     }
 
