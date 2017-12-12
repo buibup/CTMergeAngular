@@ -34,7 +34,7 @@ export class PatientService {
         .map((result: Response) => result.json() as Patient[]);
     }
 
-    mergePatient(bctHN: string, sctHN: string, patient: Patient): Observable<boolean> {
+    mergePatient(bctHN: string, sctHN: string): Observable<boolean> {
         return this.http.get('http://10.104.10.45/CTMergeAPI/api/v1/PatienMerge?BCT_HN=' + bctHN + '&SCT_HN=' + sctHN)
         .map((result: Response) => result.ok as boolean);
     }

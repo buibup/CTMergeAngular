@@ -18,9 +18,14 @@ export class PatientBctListComponent implements OnInit {
   ngOnInit() {
   }
 
-  onMergePatient(bctHN: string, sctHN: string) {
-    this.patientService.mergePatient(bctHN, sctHN, this.patientBctListService.patientSCTSelected)
-    .subscribe(x => this.toMerge(bctHN, sctHN, x));
+  onMergePatient(bctHN: string, sctHN: string, patientBCTSelected: PatientVM) {
+    if (this.isMerge(this.patientBctListService.patientSCTSelected, patientBCTSelected.SCT_HN)) {
+      this.patientService.mergePatient(bctHN, '')
+      .subscribe(x => this.toMerge(bctHN, '', x));
+    }else {
+      this.patientService.mergePatient(bctHN, sctHN)
+      .subscribe(x => this.toMerge(bctHN, sctHN, x));
+    }
   }
 
   toMerge(bctHN: string, sctHN: string, isM: boolean) {

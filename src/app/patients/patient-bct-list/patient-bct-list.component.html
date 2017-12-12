@@ -13,7 +13,7 @@
       <td>{{patient.Patient.Name}}</td>
       <td>{{patient.Patient.DOB | date : "dd/MM/yyyy"}}</td>
       <td>
-        <button (click)="onMergePatient(patient.Patient.HN, patientBctListService.patientSCTSelected.HN)"> {{ isMerge(patientBctListService.patientSCTSelected, patient.SCT_HN) ? 'UnMerge' : 'Merge'}} </button>
+        <button (click)="onMergePatient(patient.Patient.HN, patientBctListService.patientSCTSelected.HN, patient)"> {{ isMerge(patientBctListService.patientSCTSelected, patient.SCT_HN) ? 'UnMerge' : 'Merge'}} </button>
       </td>
     </tr>
   </table>
