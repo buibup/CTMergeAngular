@@ -20,8 +20,11 @@ export class PatientBctListComponent implements OnInit {
 
   onMergePatient(bctHN: string, sctHN: string) {
     this.patientService.mergePatient(bctHN, sctHN, this.patientBctListService.patientSCTSelected)
-    .subscribe(x => this.patientBctListService.hasMerge(x));
+    .subscribe(x => this.toMerge(bctHN, sctHN, x));
+  }
 
+  toMerge(bctHN: string, sctHN: string, isM: boolean) {
+    this.patientBctListService.hasMerge(isM);
     if (this.patientBctListService.isMerge) {
       this.patientService.getPatientBCT(bctHN).subscribe(x => this.patientBctListService.patientList = x);
       this.isMerge(this.patientBctListService.patientSCTSelected, sctHN);
