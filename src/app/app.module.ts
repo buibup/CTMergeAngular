@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { PatientsComponent } from './patients/patients.component';
@@ -27,6 +29,8 @@ import { PatientSctListService } from './patients/shared/patient-sct-list.servic
     BrowserModule,
     FormsModule,
     HttpModule,
+    BrowserAnimationsModule,
+    MatButtonModule, MatCheckboxModule,
     ToastrModule.forRoot()
   ],
   providers: [
