@@ -12,8 +12,11 @@
       <td>{{patient.SCT_HN}}</td>
       <td>{{patient.Patient.Name}}</td>
       <td>{{patient.Patient.DOB | date : "dd/MM/yyyy"}}</td>
-      <td>
+      <td *ngIf="patientBctListService.patientSCTSelected">
         <button (click)="onMergePatient(patient.Patient.HN, patientBctListService.patientSCTSelected.HN, patient)"> {{ isMerge(patientBctListService.patientSCTSelected, patient.SCT_HN, patient) ? 'UnMerge' : 'Merge'}} </button>
+      </td>
+      <td *ngIf="!patientBctListService.patientSCTSelected">
+          <button (click)="onMergePatient(patient.Patient.HN, '', patient)"> {{ isMerge(patientBctListService.patientSCTSelected, patient.SCT_HN, patient) ? 'UnMerge' : 'Merge'}} </button>
       </td>
     </tr>
   </table>

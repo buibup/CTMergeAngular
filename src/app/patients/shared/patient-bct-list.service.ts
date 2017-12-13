@@ -7,13 +7,16 @@ import { PatientService } from './patient.service';
 export class PatientBctListService {
 
   patientList: PatientVM[];
-  patientSCTSelected: Patient;
+  patientSCTSelected?: Patient;
   isMerge: boolean;
+  search: string;
 
-
-   set(patients: PatientVM[], patient: Patient) {
+   set(patients: PatientVM[], patient?: Patient, search?: string) {
      this.patientList = patients;
-     this.patientSCTSelected = patient;
+     this.search = search;
+     if (patient != null) {
+      this.patientSCTSelected = patient;
+     }
    }
 
    hasMerge(merge: boolean) {
