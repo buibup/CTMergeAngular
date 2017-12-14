@@ -5,7 +5,6 @@ import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { AppComponent } from './app.component';
 import { PatientsComponent } from './patients/patients.component';
@@ -34,7 +33,6 @@ import { PatientSctListService } from './patients/shared/patient-sct-list.servic
     BrowserAnimationsModule,
     MatButtonModule, MatCheckboxModule,
     NgbModule,
-    AngularFontAwesomeModule,
     ToastrModule.forRoot()
   ],
   providers: [
