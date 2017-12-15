@@ -7,7 +7,8 @@
       <th>DOB</th>
       <th>Merge</th>
     </tr>
-    <tr *ngFor="let patient of patientBctListService.patientList">
+    <tr *ngFor="let patient of patientBctListService.patientList; let i = index" 
+      (click)="setClickedRow(i)" [class.active]="i == selectedRow">
       <td>{{patient.Patient.HN}}</td>
       <td>{{patient.SCT_HN}}</td>
       <td>{{patient.Patient.Name}}</td>

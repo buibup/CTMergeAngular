@@ -13,10 +13,17 @@ import { Patient } from '../shared/patient.model';
 })
 export class PatientBctListComponent implements OnInit {
 
+  selectedRow: number;
+
   constructor(public patientBctListService: PatientBctListService,
     private patientService: PatientService) { }
 
   ngOnInit() {
+  }
+
+  setClickedRow(index: number) {
+    this.selectedRow = index;
+    console.log(index);
   }
 
   onMergePatient(bctHN: string, sctHN: string, patientBCTSelected: PatientVM) {
@@ -40,8 +47,6 @@ export class PatientBctListComponent implements OnInit {
       this.patientService.getPatientBCT(this.patientBctListService.search).subscribe(x => this.patientBctListService.patientList = x);
       this.isMerge(this.patientBctListService.patientSCTSelected, sctHN, patientBCTSelected);
     }
-
-
   }
 
   isMerge(patientSCT?: Patient, sctHN?: string, patientVM?: PatientVM): boolean {

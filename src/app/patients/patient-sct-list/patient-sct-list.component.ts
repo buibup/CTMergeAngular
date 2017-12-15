@@ -15,6 +15,8 @@ export class PatientSctListComponent implements OnInit {
 
   @Input() patientList: Patient[];
 
+  selectedRow: number;
+
   constructor(private patientService: PatientService,
     public patientBctListService: PatientBctListService,
     public patientSctListService: PatientSctListService) { }
@@ -22,8 +24,12 @@ export class PatientSctListComponent implements OnInit {
   ngOnInit() {
   }
 
+  setClickedRow(index: number) {
+    this.selectedRow = index;
+    console.log(index);
+  }
+
   onGetPatientBCT(name: string, patient: Patient): void {
     this.patientService.getPatientBCT(name).subscribe(x => this.patientBctListService.set(x, patient));
   }
-
 }
