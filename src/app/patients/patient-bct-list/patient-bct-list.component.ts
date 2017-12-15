@@ -23,7 +23,6 @@ export class PatientBctListComponent implements OnInit {
 
   setClickedRow(index: number) {
     this.selectedRow = index;
-    console.log(index);
   }
 
   onMergePatient(bctHN: string, sctHN: string, patientBCTSelected: PatientVM) {

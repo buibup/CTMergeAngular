@@ -26,7 +26,6 @@ export class PatientSctListComponent implements OnInit {
 
   setClickedRow(index: number) {
     this.selectedRow = index;
-    console.log(index);
   }
 
   onGetPatientBCT(name: string, patient: Patient): void {
