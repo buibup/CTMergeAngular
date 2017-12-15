@@ -26,6 +26,7 @@ export class PatientBctComponent implements OnInit {
   }
 
   onGetPatient(search: string) {
+    this.patientBctListService.selectedRow = -1;
     this.patientService.getPatientBCT(search)
     .subscribe(x => this.patientBctListService.set(x, this.patientBctListService.patientSCTSelected, search));
   }

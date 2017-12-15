@@ -5,6 +5,7 @@ import { Patient } from '../shared/patient.model';
 export class PatientSctListService {
 
   patientList: Patient[];
+  selectedRow: number;
 
   set(patients: Patient[]) {
     this.patientList = patients;

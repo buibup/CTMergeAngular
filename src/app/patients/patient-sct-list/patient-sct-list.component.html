@@ -6,7 +6,7 @@
       <th>DOB</th>
     </tr>
     <tr *ngFor="let patient of patientSctListService.patientList; let i = index" 
-    (click)="onGetPatientBCT(patient.FirstName + patient.LastName, patient); setClickedRow(i)" [class.active]="i == selectedRow">
+    (click)="onGetPatientBCT(patient.FirstName + patient.LastName, patient); setClickedRow(i)" [class.active]="i == patientSctListService.selectedRow">
       <td>{{patient.HN}}</td>
       <td>{{patient.Name}}</td>
       <td>{{patient.DOB | date :  "dd/MM/yyyy"}}</td>

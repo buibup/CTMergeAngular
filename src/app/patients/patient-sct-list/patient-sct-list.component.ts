@@ -15,8 +15,6 @@ export class PatientSctListComponent implements OnInit {
 
   @Input() patientList: Patient[];
 
-  selectedRow: number;
-
   constructor(private patientService: PatientService,
     public patientBctListService: PatientBctListService,
     public patientSctListService: PatientSctListService) { }
@@ -25,7 +23,7 @@ export class PatientSctListComponent implements OnInit {
   }
 
   setClickedRow(index: number) {
-    this.selectedRow = index;
+    this.patientSctListService.selectedRow = index;
   }
 
   onGetPatientBCT(name: string, patient: Patient): void {

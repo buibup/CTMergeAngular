@@ -10,6 +10,7 @@ export class PatientBctListService {
   patientSCTSelected?: Patient;
   isMerge: boolean;
   search: string;
+  selectedRow: number;
 
    set(patients: PatientVM[], patient?: Patient, search?: string) {
      this.patientList = patients;

@@ -8,7 +8,7 @@
       <th>Merge</th>
     </tr>
     <tr *ngFor="let patient of patientBctListService.patientList; let i = index" 
-      (click)="setClickedRow(i)" [class.active]="i == selectedRow">
+      (click)="setClickedRow(i)" [class.active]="i == patientBctListService.selectedRow">
       <td>{{patient.Patient.HN}}</td>
       <td>{{patient.SCT_HN}}</td>
       <td>{{patient.Patient.Name}}</td>

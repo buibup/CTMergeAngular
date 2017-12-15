@@ -13,8 +13,6 @@ import { Patient } from '../shared/patient.model';
 })
 export class PatientBctListComponent implements OnInit {
 
-  selectedRow: number;
-
   constructor(public patientBctListService: PatientBctListService,
     private patientService: PatientService) { }
 
@@ -22,7 +20,7 @@ export class PatientBctListComponent implements OnInit {
   }
 
   setClickedRow(index: number) {
-    this.selectedRow = index;
+    this.patientBctListService.selectedRow = index;
   }
 
   onMergePatient(bctHN: string, sctHN: string, patientBCTSelected: PatientVM) {

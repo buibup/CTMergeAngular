@@ -18,6 +18,7 @@ export class PatientSctComponent implements OnInit {
   }
 
   onGetPatient(hn: string, firstName: string, lastName: string) {
+    this.patientSctListService.selectedRow = -1;
     if (typeof hn !== 'undefined' && hn) {
       this.patientService.getPatientSCTByHN(hn).subscribe(x => this.patientSctListService.set(x));
     } else {
