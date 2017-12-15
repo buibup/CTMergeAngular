@@ -2,7 +2,7 @@
 <form action="" class="pt-form">
   <div class="form-row">
     <div class="formg-group col-md-12 label">
-      <label>Patient Serach BCT</label>
+      <p class="p-3 mb-2 bg-primary text-white">BCT Search</p>
     </div>
   </div>
   <div class="form-row">
@@ -12,15 +12,7 @@
   </div>
   <div class="form-row">
     <div class="form-group col-md-12" *ngIf="patientBctListService.patientSCTSelected">
-      <label>SCT HN: {{patientBctListService.patientSCTSelected.HN}}</label>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-12">
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-12">
+      <i class="fa fa-info-circle p-1 mb-2 bg-warning" aria-hidden="true"> SCT HN: {{patientBctListService.patientSCTSelected.HN}}</i>
     </div>
   </div>
   <div class="form-row">
