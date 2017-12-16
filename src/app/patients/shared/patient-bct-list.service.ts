@@ -12,20 +12,24 @@ export class PatientBctListService {
   search: string;
   selectedRow: number;
 
-   set(patients: PatientVM[], patient?: Patient, search?: string) {
-     this.patientList = patients;
-     this.search = search;
-     if (patient != null) {
-      this.patientSCTSelected = patient;
-     }
-   }
+  set(patients: PatientVM[], patient?: Patient, search?: string) {
+    this.patientList = patients;
+    this.search = search;
+    if (patient != null) {
+    this.patientSCTSelected = patient;
+    }
+  }
 
-   hasMerge(merge: boolean) {
-    this.isMerge = merge;
-   }
+  setPatientSCTSelected(patient: Patient) {
+    this.patientSCTSelected = patient;
+  }
 
-   clear() {
-     this.patientList = [];
-     this.patientSCTSelected = null;
-   }
+  hasMerge(merge: boolean) {
+  this.isMerge = merge;
+  }
+
+  clear() {
+    this.patientList = [];
+    this.patientSCTSelected = null;
+  }
 }
