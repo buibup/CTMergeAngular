@@ -1,5 +1,6 @@
 
 import { Component, OnInit, Input } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 import { PatientVM } from '../shared/patientVM.model';
 import { PatientBctListService } from '../shared/patient-bct-list.service';
@@ -14,7 +15,8 @@ import { Patient } from '../shared/patient.model';
 export class PatientBctListComponent implements OnInit {
 
   constructor(public patientBctListService: PatientBctListService,
-    private patientService: PatientService) { }
+    private patientService: PatientService,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
   }
@@ -24,16 +26,26 @@ export class PatientBctListComponent implements OnInit {
   }
 
   onMergePatient(bctHN: string, sctHN: string, patientBCTSelected: PatientVM) {
-    if (this.patientBctListService.patientSCTSelected === undefined) {
-      this.patientService.mergePatient(bctHN, '')
-      .subscribe(x => this.toMerge(bctHN, '', x, patientBCTSelected));
-    }else {
-      if (this.isMerge(this.patientBctListService.patientSCTSelected, patientBCTSelected.SCT_HN, patientBCTSelected)) {
+
+    if (this.isMerge(this.patientBctListService.patientSCTSelected, patientBCTSelected.SCT_HN, patientBCTSelected)) {
+      if (confirm('Are you sure to unmerge this patient?') === true) {
         this.patientService.mergePatient(bctHN, '')
-        .subscribe(x => this.toMerge(bctHN, '', x, patientBCTSelected));
+        .subscribe(x => {
+          this.toMerge(bctHN, '', x, patientBCTSelected);
+          // this.toastr.warning('Unmerge Successfully', 'Patient Merge');
+        });
+      }
+    }else {
+      if (this.patientBctListService.patientSCTSelected === undefined ) {
+        alert('Please choose patient for merge!!');
       }else {
-        this.patientService.mergePatient(bctHN, sctHN)
-        .subscribe(x => this.toMerge(bctHN, sctHN, x, patientBCTSelected));
+        if (confirm('Are you sure to merge this patient?') === true) {
+          this.patientService.mergePatient(bctHN, sctHN)
+          .subscribe(x => {
+            this.toMerge(bctHN, sctHN, x, patientBCTSelected);
+            // this.toastr.warning('Merge Successfully', 'Patient Merge');
+          });
+        }
       }
     }
   }

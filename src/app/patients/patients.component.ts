@@ -1,4 +1,5 @@
 import { Component, OnInit, Injector } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 import { PatientService } from './shared/patient.service';
 
@@ -10,8 +11,12 @@ import { PatientService } from './shared/patient.service';
 })
 export class PatientsComponent implements OnInit {
 
-  constructor(private patientService: PatientService) { }
+  constructor(private patientService: PatientService, private toastr: ToastrService) { }
 
   ngOnInit() {
+  }
+
+  showSuccess() {
+    this.toastr.success('Hello world!', 'Toastr fun!');
   }
 }
