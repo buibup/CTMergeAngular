@@ -25,7 +25,7 @@ export class PatientBctListService {
   }
 
   hasMerge(merge: boolean) {
-  this.isMerge = merge;
+    this.isMerge = merge;
   }
 
   clear() {
