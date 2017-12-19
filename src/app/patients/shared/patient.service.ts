@@ -17,27 +17,27 @@ export class PatientService {
     patientSCTSelected: Patient;
     patientBCTSelected: PatientVM;
 
-    url = 'http://10.105.10.114/';
+    url = 'http://10.105.10.114/CTMergeAPI/';
 
     constructor(private http: Http) { }
 
     getPatientBCT(search: string): Observable<PatientVM[]> {
-        return this.http.get(this.url + 'CTMergeAPI/api/v1/GetPatientBCT?search=' + search)
+        return this.http.get(this.url + 'api/v1/GetPatientBCT?search=' + search)
         .map((result: Response) => result.json() as PatientVM[]);
     }
 
     getPatientSCTByHN(hn: string): Observable<Patient[]> {
-        return this.http.get(this.url + 'CTMergeAPI/api/v1/GetPatientSCTByHN?hn=' + hn)
+        return this.http.get(this.url + 'api/v1/GetPatientSCTByHN?hn=' + hn)
         .map((result: Response) => result.json() as Patient[]);
     }
 
     getPatientSCTByName(firstName: string, lastName: string): Observable<Patient[]> {
-        return this.http.get(this.url + 'CTMergeAPI/api/v1/GetPatientSCTByName?firstName=' + firstName + '&lastName=' + lastName)
+        return this.http.get(this.url + 'api/v1/GetPatientSCTByName?firstName=' + firstName + '&lastName=' + lastName)
         .map((result: Response) => result.json() as Patient[]);
     }
 
     mergePatient(bctHN: string, sctHN: string): Observable<boolean> {
-        return this.http.get(this.url + 'CTMergeAPI/api/v1/PatienMerge?BCT_HN=' + bctHN + '&SCT_HN=' + sctHN)
+        return this.http.get(this.url + 'api/v1/PatienMerge?BCT_HN=' + bctHN + '&SCT_HN=' + sctHN)
         .map((result: Response) => result.ok as boolean);
     }
 
