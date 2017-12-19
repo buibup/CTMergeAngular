@@ -25,10 +25,10 @@ export class PatientBctListComponent implements OnInit {
     this.patientBctListService.selectedRow = index;
   }
 
-  onMergePatient(bctHN: string, sctHN: string, patientBCTSelected: PatientVM) {
+  onMergePatient(bctHN: string, sctHN: string, patientBCTSelected: PatientVM, hasSctHN: string) {
 
     if (this.isMerge(this.patientBctListService.patientSCTSelected, patientBCTSelected.SCT_HN, patientBCTSelected)) {
-      if (confirm('Are you sure to unmerge patient ' + bctHN + ' with ' + sctHN + ' ?') === true) {
+      if (confirm('Are you sure to unmerge patient ' + bctHN + ' with ' + hasSctHN + ' ?') === true) {
         this.patientService.mergePatient(bctHN, '')
         .subscribe(x => {
           this.toMerge(bctHN, '', x, patientBCTSelected);
