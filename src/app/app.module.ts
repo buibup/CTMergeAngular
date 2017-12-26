@@ -16,6 +16,7 @@ import { PatientSctListComponent } from './patients/patient-sct-list/patient-sct
 
 import { PatientBctListService } from './patients/shared/patient-bct-list.service';
 import { PatientSctListService } from './patients/shared/patient-sct-list.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PatientSctListService } from './patients/shared/patient-sct-list.servic
     PatientBctComponent,
     PatientSctComponent,
     PatientBctListComponent,
-    PatientSctListComponent
+    PatientSctListComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
