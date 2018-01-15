@@ -2,3 +2,7 @@
     background-color:#125626 !important;
     color: white;
   }
+
+  .table tr td{
+    font-size: smaller;
+  }

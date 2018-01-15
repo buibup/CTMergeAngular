@@ -1,27 +1,33 @@
 <div class="form-row" *ngIf="patientBctListService.patientList">
-  <table class="table table-sm table-hover">
-    <tr>
-      <th>HN BCT</th>
-      <th>HN SCT</th>
-      <th>Name</th>
-      <th>DOB</th>
-      <th>Merge</th>
-    </tr>
-    <tr *ngFor="let patient of patientBctListService.patientList; let i = index"
-      (click)="setClickedRow(i)" [class.active]="i == patientBctListService.selectedRow">
-      <td>{{patient.Patient.HN}}</td>
-      <td>{{patient.SCT_HN}}</td>
-      <td>{{patient.Patient.Name}}</td>
-      <td>{{patient.Patient.DOB | date : "dd/MM/yyyy"}}</td>
-      <td *ngIf="patientBctListService.patientSCTSelected">
-        <button class="bg-primary text-white" (click)="onMergePatient(patient.Patient.HN,
-        patientBctListService.patientSCTSelected.HN, patient, patient.SCT_HN)"> {{ isMerge(patientBctListService.patientSCTSelected, patient.SCT_HN, patient) ? 'UnMerge' : 'Merge'}} </button>
-      </td>
-      <td *ngIf="!patientBctListService.patientSCTSelected">
-          <button class="bg-primary text-white" (click)="onMergePatient(patient.Patient.HN,
-          '', patient, patient.SCT_HN)"> {{ isMerge(patientBctListService.patientSCTSelected, patient.SCT_HN, patient) ? 'UnMerge' : 'Merge'}} </button>
-      </td>
-    </tr>
-  </table>
+    <table class="table table-sm table-hover">
+        <tr>
+            <th>HN BCT</th>
+            <th>HN SCT</th>
+            <th>Name</th>
+            <th>DOB</th>
+            <th>Merge</th>
+        </tr>
+        <tr *ngFor="let patient of patientBctListService.patientList; let i = index"
+            (click)="setClickedRow(i)"
+            [class.active]="i == patientBctListService.selectedRow || (patientBctListService.patientSCTSelected && (patient.SCT_HN === patientBctListService.patientSCTSelected.HN))">
+            <td>{{patient.Patient.HN}}</td>
+            <td>{{patient.SCT_HN}}</td>
+            <td>{{patient.Patient.Name}}</td>
+            <td>{{patient.Patient.DOB | date : "dd/MM/yyyy"}}</td>
+            <td *ngIf="patientBctListService.patientSCTSelected">
+                <button class="btn btn-sm btn-block btn-primary text-white"
+                  (click)="onMergePatient(patient.Patient.HN,patientBctListService.patientSCTSelected.HN,
+                            patient, patient.SCT_HN)">
+                            {{ isMerge(patientBctListService.patientSCTSelected, patient.SCT_HN, patient) ? 'UnMerge' : 'Merge'}}
+                </button>
+            </td>
+            <td *ngIf="!patientBctListService.patientSCTSelected">
+                <button class="btn bg-info text-white btn-sm"
+                  (click)="onMergePatient(patient.Patient.HN,'',
+                            patient, patient.SCT_HN)">
+                            {{ isMerge(patientBctListService.patientSCTSelected, patient.SCT_HN, patient) ? 'UnMerge' : 'Merge'}}
+                </button>
+            </td>
+        </tr>
+    </table>
 </div>
-

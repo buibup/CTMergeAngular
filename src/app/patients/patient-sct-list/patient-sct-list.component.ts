@@ -29,4 +29,8 @@ export class PatientSctListComponent implements OnInit {
   onGetPatientBCT(name: string, patient: Patient): void {
     this.patientService.getPatientBCT(name).subscribe(x => this.patientBctListService.set(x, patient));
   }
+
+  OpenOpdSCT(HN: string): void {
+    window.open('http://10.105.10.114/eprsct/OpdRecord?hn=' + HN);
+  }
 }

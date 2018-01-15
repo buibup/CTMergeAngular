@@ -1,16 +1,17 @@
 <div class="form-row" *ngIf="patientSctListService.patientList">
-  <table class="table table-sm table-hover">
-    <tr>
-      <th>HN</th>
-      <th>Name</th>
-      <th>DOB</th>
-    </tr>
-    <tr *ngFor="let patient of patientSctListService.patientList; let i = index" 
-    (click)="onGetPatientBCT(patient.FirstName + patient.LastName, patient); setClickedRow(i)" [class.active]="i == patientSctListService.selectedRow">
-      <td>{{patient.HN}}</td>
-      <td>{{patient.Name}}</td>
-      <td>{{patient.DOB | date :  "dd/MM/yyyy"}}</td>
-      <td></td>
-    </tr>
-  </table>
+    <table class="table table-sm table-hover">
+        <tr>
+            <th>HN</th>
+            <th>Name</th>
+            <th>DOB</th>
+            <th>OPD</th>
+        </tr>
+        <tr *ngFor="let patient of patientSctListService.patientList; let i = index" (click)="onGetPatientBCT(patient.HN, patient); setClickedRow(i)" [class.active]="i == patientSctListService.selectedRow">
+            <td>{{patient.HN}}</td>
+            <td>{{patient.Name}}</td>
+            <td>{{patient.DOB | date : "dd/MM/yyyy"}}</td>
+            <td><button class="btn btn-info text-white btn-sm" (click)="OpenOpdSCT(patient.HN)">OPD</button>
+            </td>
+        </tr>
+    </table>
 </div>

@@ -9,15 +9,32 @@ import { Patient } from './patient.model';
 import { PatientVM } from './patientVM.model';
 import { resource } from 'selenium-webdriver/http';
 
+import { AuthenticationService } from '../../login/services/authentication.service';
+import { User } from '../../login/services/User.model';
+import { Router } from '@angular/router';
+
 @Injectable()
 export class PatientService {
-
+    mergeStatus: string;
     patientSCTSelected: Patient;
     patientBCTSelected: PatientVM;
+    currentUser: User;
 
     url = 'http://10.105.10.114/CTMergeAPI/api/v1/';
+    // url = 'http://localhost:31582/api/v1/';
 
-    constructor(private http: Http) {
+    constructor(private http: Http,
+                private authenticationService: AuthenticationService,
+                private router: Router) {
+
+      // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+
+      // if (this.currentUser.IsGroupAllow === false) {
+      //   console.log('IsGroupAllow = false');
+      //   this.router.navigate(['']);
+      // }
+      // console.log('IsGroupAllow = ' + this.currentUser.IsGroupAllow);
     }
 
     getPatientBCT(search: string): Observable<PatientVM[]> {
@@ -35,8 +52,12 @@ export class PatientService {
         .map((result: Response) => result.json() as Patient[]);
     }
 
-    mergePatient(bctHN: string, sctHN: string) {
-        return this.http.get(this.url + 'PatienMerge?BCT_HN=' + bctHN + '&SCT_HN=' + sctHN)
+    mergePatient(bctHN: string, sctHN: string, status: string) {
+        return this.http.get(this.url + 'PatienMerge?BCT_HN=' + bctHN
+                                                  + '&SCT_HN=' + sctHN
+                                                  + '&USERNAME=' + this.authenticationService.currentUser.SSUSR_Initials
+                                                  + '&FULLNAME=' + this.authenticationService.currentUser.SSUSR_Name
+                                                  + '&STATUS=' + status)
         .map((result: Response) => result.ok as boolean);
     }
 

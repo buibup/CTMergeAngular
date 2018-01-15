@@ -1,34 +1,34 @@
-
 <form action="" class="pt-form">
-  <div class="form-row">
-    <div class="formg-group col-md-12 label">
-      <p class="p-3 mb-2 bg-primary text-white">BCT Search</p>
+    <div class="form-row">
+        <div class="formg-group col-md-12 label" style="padding-bottom: 0.3%;">
+            <!-- <p class="p-3 mb-2 bg-primary text-white">BCT Search</p> -->
+            <img src="assets/img/BCT-header.png" height="65px" width="100%" /><br/>
+        </div>
     </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-12">
-      <input class="form-control" name="Search" #searchTerm placeholder="Search Patient">
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <input class="form-control" name="Search" #searchTerm placeholder="Search Patient" autocomplete="off">
+        </div>
     </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-12" *ngIf="patientBctListService.patientSCTSelected">
-      <i class="fa fa-info-circle p-1 mb-2 bg-warning" aria-hidden="true">
+    <div class="form-row">
+        <div class="form-group col-md-12" *ngIf="patientBctListService.patientSCTSelected">
+            <i class="fa fa-info-circle p-1 mb-2 bg-warning" aria-hidden="true">
         <b>SCT HN:</b> {{patientBctListService.patientSCTSelected.HN}}
         <b>Name:</b> {{patientBctListService.patientSCTSelected.Name}}
       </i>
+        </div>
     </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-8">
-      <button type="submit" (click)="onGetPatient(searchTerm.value)" class="btn btn-lg btn-block btn-info">
+    <div class="form-row">
+        <div class="form-group col-md-8">
+            <button type="submit" (click)="onGetPatient(isEmptyOrSpaces(searchTerm.value))" class="btn btn-lg btn-block btn-info">
         <i class="fa fa-search"> Search </i>
       </button>
-    </div>
-    <div class="form-group col-md-4">
-      <button class="btn btn-lg btn-block btn-secondary" (click)="searchTerm.value='';">
+        </div>
+        <div class="form-group col-md-4">
+            <button class="btn btn-lg btn-block btn-secondary" (click)="searchTerm.value='';">
         <i class="fa fa-repeat"> Reset </i>
       </button>
+        </div>
     </div>
-  </div>
 </form>
 <app-patient-bct-list></app-patient-bct-list>

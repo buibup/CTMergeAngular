@@ -4,7 +4,7 @@ import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular
 import { NgForm } from '@angular/forms';
 
 import { PatientService } from '../shared/patient.service';
-import { ToastrService } from 'ngx-toastr';
+// import { ToastrService } from 'ngx-toastr';
 import { PatientVM } from '../shared/patientVM.model';
 import { Patient } from '../shared/patient.model';
 // import { Input } from '@angular/core/src/metadata/directives';
@@ -20,14 +20,24 @@ export class PatientBctComponent implements OnInit {
   // tslint:disable-next-line:max-line-length
   constructor(private patientService: PatientService,
     public patientBctListService: PatientBctListService,
-    private toastr: ToastrService, private http: Http) { }
+    // private toastr: ToastrService,
+    private http: Http) { }
 
   ngOnInit() {
+    this.onGetPatient('');
   }
 
   onGetPatient(search: string) {
     this.patientBctListService.selectedRow = -1;
     this.patientService.getPatientBCT(search)
     .subscribe(x => this.patientBctListService.set(x, this.patientBctListService.patientSCTSelected, search));
+  }
+
+  isEmptyOrSpaces(str) {
+    if (str === null || str.match(/^ *$/) !== null) {
+      return '';
+    } else {
+      return str;
+    }
   }
 }

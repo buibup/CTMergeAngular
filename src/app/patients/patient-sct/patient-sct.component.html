@@ -1,33 +1,35 @@
 <form action="" class="pt-form">
-  <div class="form-row">
-      <div class="formg-group col-md-12 label">
-        <p class="p-3 mb-2 bg-success text-white">SCT Search</p>
-      </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-12">
-      <input class="form-control" name="HN" #HN placeholder="Search HN">
+    <div class="form-row">
+        <div class="formg-group col-md-12 label" style="padding-bottom: 1.5%;">
+            <!-- <p class="p-3 mb-2 bg-success text-white">SCT Search</p> -->
+            <img src="assets/img/SCT-header.png" height="60px" width="100%" />
+        </div>
     </div>
-  </div>
-  <div class="form-row">
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <input class="form-control" name="HN" #HN placeholder="Search Patient" autocomplete="off" autofocus>
+        </div>
+    </div>
+    <!-- <div class="form-row">
     <div class="form-group col-md-6">
       <input class="form-control" name="FirstName" #FirstName placeholder="Search FirstName">
     </div>
     <div class="form-group col-md-6">
       <input class="form-control" name="LastName" #LastName  placeholder="Search LastName">
     </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-8">
-      <button class="btn btn-lg btn-block btn-info" (click)="onGetPatient(HN.value, FirstName.value, LastName.value)">
+  </div> -->
+    <div class="form-row">
+        <div class="form-group col-md-8">
+            <button class="btn btn-lg btn-block btn-info" (click)="onGetPatient(isEmptyOrSpaces(HN.value), isEmptyOrSpaces(HN.value), isEmptyOrSpaces(HN.value))">
         <i class="fa fa-search"> Search </i>
       </button>
-    </div>
-    <div class="form-group col-md-4">
-      <button class="btn btn-lg btn-block btn-secondary" (click)="HN.value=''; FirstName.value=''; LastName.value='';">
+        </div>
+        <div class="form-group col-md-4">
+            <!-- <button class="btn btn-lg btn-block btn-secondary" (click)="HN.value=''; FirstName.value=''; LastName.value='';"> -->
+                <button class="btn btn-lg btn-block btn-secondary" (click)="HN.value='';">
         <i class="fa fa-repeat"> Reset </i>
       </button>
+        </div>
     </div>
-  </div>
 </form>
 <app-patient-sct-list></app-patient-sct-list>

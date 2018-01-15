@@ -1,6 +1,6 @@
 
 import { Component, OnInit, Input } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
+// import { ToastrService } from 'ngx-toastr';
 
 import { PatientVM } from '../shared/patientVM.model';
 import { PatientBctListService } from '../shared/patient-bct-list.service';
@@ -16,7 +16,8 @@ export class PatientBctListComponent implements OnInit {
 
   constructor(public patientBctListService: PatientBctListService,
     private patientService: PatientService,
-    private toastr: ToastrService) { }
+    // private toastr: ToastrService
+  ) { }
 
   ngOnInit() {
   }
@@ -28,12 +29,12 @@ export class PatientBctListComponent implements OnInit {
   onMergePatient(bctHN: string, sctHN: string, patientBCTSelected: PatientVM, hasSctHN: string) {
 
     if (this.isMerge(this.patientBctListService.patientSCTSelected, patientBCTSelected.SCT_HN, patientBCTSelected)) {
-      if (confirm('Are you sure to unmerge patient ' + bctHN + ' with ' + hasSctHN + ' ?') === true) {
-        this.patientService.mergePatient(bctHN, '')
-        .subscribe(x => {
-          this.toMerge(bctHN, '', x, patientBCTSelected);
-          // this.toastr.warning('Unmerge Successfully', 'Patient Merge');
-        });
+      if (confirm('Are you sure to unmerge patient "' + bctHN + '" with "' + hasSctHN + '" ?') === true) {
+        this.patientService.mergePatient(bctHN, hasSctHN, 'UnMerged')
+                              .subscribe(x => {
+                                this.toMerge(bctHN, '', x, patientBCTSelected);
+                                // this.toastr.warning('Unmerge Successfully', 'Patient Merge');
+                              });
       }
     }else {
       if (this.patientBctListService.patientSCTSelected === undefined ) {
@@ -48,7 +49,8 @@ export class PatientBctListComponent implements OnInit {
   toMerge(bctHN: string, sctHN: string, isM: boolean, patientBCTSelected: PatientVM) {
     this.patientBctListService.hasMerge(isM);
     if (this.patientBctListService.isMerge) {
-      this.patientService.getPatientBCT(this.patientBctListService.search).subscribe(x => this.patientBctListService.patientList = x);
+      this.patientService.getPatientBCT(this.patientBctListService.search)
+                            .subscribe(x => this.patientBctListService.patientList = x);
       this.isMerge(this.patientBctListService.patientSCTSelected, sctHN, patientBCTSelected);
     }
   }
@@ -81,7 +83,7 @@ export class PatientBctListComponent implements OnInit {
       alert('This patient have merged with other patient.');
     }else {
       if (confirm('Are you sure to merge patient ' + bctHN + ' with ' + sctHN + ' ?') === true) {
-        this.patientService.mergePatient(bctHN, sctHN)
+        this.patientService.mergePatient(bctHN, sctHN, 'Merged')
         .subscribe(x => {
           this.toMerge(bctHN, sctHN, x, patientBCTSelected);
           // this.toastr.warning('Merge Successfully', 'Patient Merge');
